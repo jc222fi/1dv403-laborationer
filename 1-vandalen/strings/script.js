@@ -6,14 +6,29 @@ window.onload = function(){
 	var convertString = function(str){
 		// Plats för förändring.		
 		// Returnera den konverterade strängen.
-		// Vid fel, kasta ett undantag med ett meddelande till användaren. 
-	
-
-
-
-
-
-
+		// Vid fel, kasta ett undantag med ett meddelande till användaren.
+		console.log(str);
+		var myConvertedString = "";
+		for(var i = 0; i <= str.length; i++){
+			var myCharacter = str.charAt(i);
+			if(myCharacter === "a" || myCharacter === "A"){
+				myCharacter = "#";
+			}
+			else{
+				if(myCharacter === myCharacter.toLocaleLowerCase()){
+					myCharacter = myCharacter.toLocaleUpperCase();
+				}
+				else if(myCharacter === myCharacter.toLocaleUpperCase()){
+					myCharacter = myCharacter.toLocaleLowerCase();
+				}
+			}
+			myConvertedString += myCharacter;
+			console.log(myConvertedString);
+		}
+		console.log(myConvertedString);
+		str = myConvertedString;
+		
+		return str;
 	};
 	// ------------------------------------------------------------------------------
 
@@ -30,7 +45,7 @@ window.onload = function(){
 		p.classList.remove( "error");
 
 		try {
-			var answer = convertString(input.value) // Läser in texten från textrutan och skickar till funktionen "convertString"
+			var answer = convertString(input.value); // Läser in texten från textrutan och skickar till funktionen "convertString"
 			p.innerHTML = answer;		// Skriver ut texten från arrayen som skapats i funktionen.	
 		} catch (error){
 			p.classList.add( "error"); // Växla CSS-klass, IE10+
