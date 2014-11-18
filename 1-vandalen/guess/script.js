@@ -2,14 +2,32 @@
 
 window.onload = function(){
 	
-	var secret = 50; // Detta tal behöver bytas ut mot ett slumpat tal.
+	var secret = Math.floor( Math.random() * 100 + 1);
+	var guessesMade = 0;
 	
 	// I denna funktion ska du skriva koden för att hantera "spelet"
 	var guess = function(number){
 		console.log("Det hemliga talet: " + secret); // Du når den yttre variabeln secret innifrån funktionen.
 		console.log("Du gissade: " + number); // Detta nummer är det som användaren gissade på.
-			
-		// Plats för förändring.
+		
+		if(isNaN(number)){
+			return [false, "Du måste ange ett nummer mellan 0 och 100"];
+		}
+		else if(number == secret){
+			++guessesMade;
+            return [true, "Grattis du vann! Det hemliga talet var " + secret + " och du klarade det på " + guessesMade + " gissningar"];
+        }
+        else if(number < 1 || number > 100){
+            return [false, "Talet är utanför intervallet 0-100"];
+        }
+        else if(number < secret){
+            ++guessesMade;
+            return [false, "Det hemliga talet är högre!"];
+        }
+        else if(number > secret){
+            ++guessesMade;
+            return [false, "Det hemliga talet är mindre!"];
+        }
 
 
 		// Returnera exempelvis: 
@@ -32,7 +50,7 @@ window.onload = function(){
 	submit.addEventListener("click", function(e){
 		e.preventDefault(); // Hindra formuläret från att skickas till servern. Vi hanterar allt på klienten.
 
-		var answer = guess(input.value) // Läser in talet från textrutan och skickar till funktionen "guess"
+		var answer = guess(input.value); // Läser in talet från textrutan och skickar till funktionen "guess"
 		p.innerHTML = answer[1];		// Skriver ut texten från arrayen som skapats i funktionen.	
 
 		if(answer[0] === true){				// Om spelet är slut, avaktivera knappen.
