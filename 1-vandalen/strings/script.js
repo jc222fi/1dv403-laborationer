@@ -7,28 +7,31 @@ window.onload = function(){
 		// Plats för förändring.		
 		// Returnera den konverterade strängen.
 		// Vid fel, kasta ett undantag med ett meddelande till användaren.
-		console.log(str);
-		var myConvertedString = "";
-		for(var i = 0; i <= str.length; i++){
-			var myCharacter = str.charAt(i);
-			if(myCharacter === "a" || myCharacter === "A"){
-				myCharacter = "#";
-			}
-			else{
-				if(myCharacter === myCharacter.toLocaleLowerCase()){
-					myCharacter = myCharacter.toLocaleUpperCase();
+		try{
+			console.log(str);
+			var myConvertedString = "";
+			for(var i = 0; i <= str.length; i++){
+				var myCharacter = str.charAt(i);
+				if(myCharacter === "a" || myCharacter === "A"){
+					myCharacter = "#";
 				}
-				else if(myCharacter === myCharacter.toLocaleUpperCase()){
-					myCharacter = myCharacter.toLocaleLowerCase();
+				else{
+					if(myCharacter === myCharacter.toLocaleLowerCase()){
+						myCharacter = myCharacter.toLocaleUpperCase();
+					}
+					else if(myCharacter === myCharacter.toLocaleUpperCase()){
+						myCharacter = myCharacter.toLocaleLowerCase();
+					}
 				}
+				myConvertedString += myCharacter;
 			}
-			myConvertedString += myCharacter;
-			console.log(myConvertedString);
-		}
-		console.log(myConvertedString);
-		str = myConvertedString;
+			str = myConvertedString;
 		
-		return str;
+			return str;
+		}
+		catch(error){
+			throw new Error("Du måste skriva något");
+		}
 	};
 	// ------------------------------------------------------------------------------
 

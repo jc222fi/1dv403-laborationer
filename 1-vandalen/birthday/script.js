@@ -4,8 +4,34 @@ window.onload = function(){
 
 	
 	var birthday = function(date){
-		
-
+		try{
+			date = new Date(date);
+			var dateNow = new Date();
+			var birthday = new Date(dateNow.getFullYear(),date.getMonth(),date.getDate());
+			var nextBirthday = new Date((birthday.getFullYear()+1),birthday.getMonth(),birthday.getDate());
+			var oneDay = 1000*60*60*24;
+			var answer = ""
+			console.log(date);
+			console.log(dateNow);
+			console.log(birthday);
+			console.log(nextBirthday);
+			if(birthday.getFullYear()===dateNow.getFullYear() && birthday.getMonth()===dateNow.getMonth() && birthday.getDate()===dateNow.getDate()){
+				answer = 0;
+				return answer;
+			}
+			else if(birthday.getFullYear()===dateNow.getFullYear() && birthday.getMonth()===dateNow.getMonth() && birthday.getDate()===(dateNow.getDate()+1)){
+				answer = 1;
+				return answer;
+			}
+			else if(birthday != dateNow && birthday.getDate() > (dateNow.getDate()+1)){
+			
+				answer = Math.ceil((nextBirthday.getTime()-dateNow.getTime())/oneDay);
+				return answer;
+			}
+		}
+		catch(error){
+			throw new Error("Du måste skriva datumet enligt formatet ÅÅÅÅ-MM-DD");
+		}
 
 			// Din kod här.
 
