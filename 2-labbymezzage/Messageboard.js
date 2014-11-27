@@ -1,16 +1,19 @@
 "use strict";
 
-var messageBoard = {
+var MessageBoard = {
+    messages: [],
     
     init: function(){
         var mess = new Message("Testmeddelande", new Date());
-        alert(mess);
-        alert(mess.getText());
-        mess.setText("En annan text");
-        alert(mess);
+        MessageBoard.messages.push(mess);
+        var mess2 = new Message("En annan text", new Date());
+        MessageBoard.messages.push(mess2);
+        var mess3 = new Message("Ytterligare en text", new Date());
+        MessageBoard.messages.push(mess3);
+        alert(MessageBoard.messages[1].getText());
     }
     
 };
 
 
-window.onload = messageBoard.init;
+window.onload = MessageBoard.init;
