@@ -13,8 +13,9 @@ var makePerson = function(persArr) {
     var ages = [];
     var sumOfAges = 0;
     var namesUnsorted = [];
+    var i = 0;
     
-    for(var i=0;i<persArr.length;i++){
+    for(i=0;i<persArr.length;i++){
         ages.push(persArr[i].age);
     }
     for(i=0;i<persArr.length;i++){
