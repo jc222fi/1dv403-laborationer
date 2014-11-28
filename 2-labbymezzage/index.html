@@ -3,9 +3,21 @@
     <head>
     	<meta charset="UTF-8" />
      	<title>Labby Mezzage</title>
+     	<link rel="stylesheet" href="style.css" />
     </head>
     <body>
-    	  <script src="Message.js"></script>
-    	  <script src="Messageboard.js"></script>
+        <div class="container">
+            <div class="header">
+                <h1> </h1>
+            </div>
+            <div class="content">
+                <div id="messages"></div>
+                <textarea class="textruta" name="meddelande" rows="5">
+                </textarea>
+                <input type="submit" value="Skicka" />
+            </div>
+        </div>
+        <script src="Message.js"></script>
+    	<script src="Messageboard.js"></script>
     </body>
 </html>

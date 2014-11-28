@@ -1,0 +1,32 @@
+/*Layout*/
+.container{
+    width:600px;
+	margin:0 auto;
+}
+.header{
+    height:100px;
+}
+.content{
+    padding:5px;
+}
+textarea{
+    display:block;
+    width:585px;
+}
+/*
+Background body:      #55ab79
+Background container: #55ab79
+Background content:   #fae6a5
+*/
+body, .container{
+    background-color:#55ab79;
+}
+.content{
+    background-color:#fae6a5;
+}
+.header{
+    color:#55ab79;
+    background-image:url("pics/LabbyMezzage.png");
+	background-position:center;
+	background-repeat:no-repeat;
+}
