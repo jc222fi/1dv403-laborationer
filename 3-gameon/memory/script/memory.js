@@ -16,31 +16,45 @@ var MemoryGame = {
         var cellCount = "";
         var tableRow = "";
         var tableCell = "";
+        var tds = "";
+        var td = "";
         var a = "";
-        var tile = "";
+        var img = "";
         var i = 0;
         MemoryGame.memoryBoard = new RandomGenerator.getPictureArray(rows, cols); //Genererar ett antal rader i ett antal kolumner
         var arrayOfTiles = MemoryGame.memoryBoard;
         console.log(arrayOfTiles);
         
+        //Skapar tabellen
         for(rowCount=0; rowCount<rows; rowCount++){
             tableRow = document.createElement("TR");
             gameBoard.appendChild(tableRow);
             for(cellCount=0; cellCount<cols; cellCount++){
                 tableCell = document.createElement("TD");
                 tableRow.appendChild(tableCell);
-                tile = arrayOfTiles[i];
-                
-                a = document.createElement("A");
-                var img = document.createElement("IMG");
-                img.src = "pics/"+tile+".png";
-                a.appendChild(img);
-                tableCell.appendChild(a);
-                console.log(tableCell);
                 i++;
             }
         }
-        a.onclick = MemoryGame.switchTile();
+        //Plockar ut alla td element och skjuter in en bild
+        tds = document.querySelectorAll("#memorygame td");
+        for(i=0; i<tds.length; i++){
+            td = tds[i];
+            
+            td.appendChild(tiles(arrayOfTiles[i]));
+            console.log(td);
+            
+        }
+        function tiles(tile){
+            a = document.createElement("A");
+            a.href = "#";
+            img = document.createElement("IMG");
+            img.src = "pics/"+arrayOfTiles[i]+".png";
+            a.appendChild(img);
+            td.appendChild(a);
+            
+        }
+        
+        a.onclick = MemoryGame.switchTile;
         
     },
     
