@@ -32,11 +32,11 @@ var MemoryGame = {
             for(cellCount=0; cellCount<cols; cellCount++){
                 tableCell = document.createElement("TD");
                 tableRow.appendChild(tableCell);
-                
-                var text = document.createElement("p");
                 tile = arrayOfTiles[i];
-                text.innerHTML =""+tile;
-                tableCell.appendChild(text);
+                
+                var img = document.createElement("img");
+                img.src = "pics/"+tile+".png";
+                tableCell.appendChild(img);
                 console.log(tableCell);
                 i++;
             }
