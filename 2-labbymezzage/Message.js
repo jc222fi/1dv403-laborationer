@@ -14,9 +14,9 @@ function Message(message, date){
 }
 
 Message.prototype.toString = function(){
-    return this.getText()+" ("+this.getDate().toLocaleString()+")";
+    return this.getText()+" ("+this.getDate().toLocaleTimeString()+")";
 };
 
 Message.prototype.getHTMLText = function(){
-    
+    return this.getText().replace("\n", "<br />");
 };
