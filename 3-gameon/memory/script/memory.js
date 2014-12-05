@@ -11,16 +11,20 @@ var MemoryGame = {
         
     },
     
-    createGameBoard: function(){
+    createGameBoard: function(rows, cols){
         
         var gameBoard = document.getElementById("memorygame");
-        var rows = 4;
-        var cols = 2;
+        rows = 4;
+        cols = 2;
         var rowCount = "";
         var cellCount = "";
         var tableRow = "";
         var tableCell = "";
-        MemoryGame.memoryBoard = new RandomGenerator.getPictureArray(rows, cols); //Genererar 4 rader i 2 kolumner
+        var tile = "";
+        var i = 0;
+        MemoryGame.memoryBoard = new RandomGenerator.getPictureArray(rows, cols); //Genererar ett antal rader i ett antal kolumner
+        var arrayOfTiles = MemoryGame.memoryBoard;
+        console.log(arrayOfTiles);
         
         for(rowCount=0; rowCount<rows; rowCount++){
             tableRow = document.createElement("TR");
@@ -28,11 +32,16 @@ var MemoryGame = {
             for(cellCount=0; cellCount<cols; cellCount++){
                 tableCell = document.createElement("TD");
                 tableRow.appendChild(tableCell);
-                tableCell.innerHTML = MemoryGame.memoryBoard(rowCount, cellCount);
+                
+                var text = document.createElement("p");
+                tile = arrayOfTiles[i];
+                text.innerHTML =""+tile;
+                tableCell.appendChild(text);
+                console.log(tableCell);
+                i++;
             }
         }
         
-        console.log(rowCount);
     },
 };
 
