@@ -40,21 +40,21 @@ var MemoryGame = {
         for(i=0; i<tds.length; i++){
             td = tds[i];
             
-            td.appendChild(tiles(arrayOfTiles[i]));
-            console.log(td);
-            
-        }
-        function tiles(tile){
             a = document.createElement("A");
             a.href = "#";
             img = document.createElement("IMG");
             img.src = "pics/"+arrayOfTiles[i]+".png";
             a.appendChild(img);
             td.appendChild(a);
+            console.log(td);
+            a.onclick = function(){
+            
+            console.log("Klickar lite");
+            return false;
+        }
             
         }
         
-        a.onclick = MemoryGame.switchTile;
         
     },
     
