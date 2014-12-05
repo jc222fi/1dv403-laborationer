@@ -1,8 +1,12 @@
 "use strict";
 var MemoryGame = {
     
+    memoryBoard: [],
+    
     init: function(){
-        console.log("hej");
+        
+        MemoryGame.memoryBoard = new RandomGenerator.getPictureArray(4, 2); //Genererar 4 rader i 2 kolumner
+        console.log(MemoryGame.memoryBoard);
     },
 };
 
