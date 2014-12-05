@@ -5,21 +5,18 @@ var MemoryGame = {
     
     init: function(){
         
-        //MemoryGame.memoryBoard = new RandomGenerator.getPictureArray(4, 2); //Genererar 4 rader i 2 kolumner
-        
-        MemoryGame.createGameBoard();
+        MemoryGame.createGameBoard(4,2);
         
     },
     
     createGameBoard: function(rows, cols){
         
         var gameBoard = document.getElementById("memorygame");
-        rows = 4;
-        cols = 2;
         var rowCount = "";
         var cellCount = "";
         var tableRow = "";
         var tableCell = "";
+        var a = "";
         var tile = "";
         var i = 0;
         MemoryGame.memoryBoard = new RandomGenerator.getPictureArray(rows, cols); //Genererar ett antal rader i ett antal kolumner
@@ -34,15 +31,24 @@ var MemoryGame = {
                 tableRow.appendChild(tableCell);
                 tile = arrayOfTiles[i];
                 
-                var img = document.createElement("img");
+                a = document.createElement("A");
+                var img = document.createElement("IMG");
                 img.src = "pics/"+tile+".png";
-                tableCell.appendChild(img);
+                a.appendChild(img);
+                tableCell.appendChild(a);
                 console.log(tableCell);
                 i++;
             }
         }
+        a.onclick = MemoryGame.switchTile();
         
     },
+    
+    switchTile: function(){
+        
+        //Här ska det hända nåt
+    }
+    
 };
 
 window.onload = MemoryGame.init;
