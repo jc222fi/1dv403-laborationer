@@ -18,8 +18,11 @@ var MemoryGame = {
         var tableCell = "";
         var tds = "";
         var td = "";
+        var divBack = "";
+        var divFront =""
         var a = "";
-        var img = "";
+        var imgBack = "";
+        var imgFront = "";
         var i = 0;
         MemoryGame.memoryBoard = new RandomGenerator.getPictureArray(rows, cols); //Genererar ett antal rader i ett antal kolumner
         var arrayOfTiles = MemoryGame.memoryBoard;
@@ -40,27 +43,44 @@ var MemoryGame = {
         for(i=0; i<tds.length; i++){
             td = tds[i];
             
+            divBack = document.createElement("DIV");
             a = document.createElement("A");
             a.href = "#";
-            img = document.createElement("IMG");
-            img.src = "pics/"+arrayOfTiles[i]+".png";
-            a.appendChild(img);
-            td.appendChild(a);
+            imgBack = document.createElement("IMG");
+            imgBack.src = "pics/0.png";
+            a.appendChild(imgBack);
+            divBack.appendChild(a);
+            td.appendChild(divBack);
+            
+            divFront = document.createElement("DIV");
+            a = document.createElement("A");
+            a.href = "#";
+            imgFront = document.createElement("IMG");
+            imgFront.src = "pics/"+arrayOfTiles[i]+".png";
+            a.appendChild(imgFront);
+            divFront.appendChild(a);
+            td.appendChild(divFront);
+            
             console.log(td);
+            
             a.onclick = function(){
             
-            console.log("Klickar lite");
-            return false;
-        }
+                this.parentNode.classList.toggle("faceup");
+                //MemoryGame.switchTile();
+                return false;
+            };
+            divBack.setAttribute("class", "facedown")
+            divFront.setAttribute("class", "faceup");
             
         }
-        
         
     },
     
     switchTile: function(){
         
-        //Här ska det hända nåt
+        //var x = document.;
+        console.log(x);
+        
     }
     
 };

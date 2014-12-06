@@ -6,3 +6,6 @@ table, tr{
 td{
     border:solid 1px;
 }
+.faceup{
+    display:none;
+}
