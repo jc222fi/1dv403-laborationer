@@ -19,9 +19,8 @@ var MemoryGame = {
         var tds = "";
         var td = "";
         var divBack = "";
-        var divFront =""
+        var divFront ="";
         var a = "";
-        var imgBack = "";
         var imgFront = "";
         var i = 0;
         MemoryGame.memoryBoard = new RandomGenerator.getPictureArray(rows, cols); //Genererar ett antal rader i ett antal kolumner
@@ -44,32 +43,45 @@ var MemoryGame = {
             td = tds[i];
             
             divBack = document.createElement("DIV");
-            a = document.createElement("A");
-            a.href = "#";
+            //a = document.createElement("A");
+            /*a.href = "#";
             imgBack = document.createElement("IMG");
             imgBack.src = "pics/0.png";
             a.appendChild(imgBack);
             divBack.appendChild(a);
-            td.appendChild(divBack);
+            td.appendChild(divBack);*/
             
             divFront = document.createElement("DIV");
             a = document.createElement("A");
             a.href = "#";
             imgFront = document.createElement("IMG");
             imgFront.src = "pics/"+arrayOfTiles[i]+".png";
-            a.appendChild(imgFront);
-            divFront.appendChild(a);
-            td.appendChild(divFront);
+            divFront.appendChild(imgFront);
+            a.appendChild(divBack);
+            a.appendChild(divFront);
+            td.appendChild(a);
             
-            console.log(td);
+            //divFront.setAttribute("class", "faceup");
+            //divBack.setAttribute("class", "facedown");
             
             a.onclick = function(){
-            
-                this.parentNode.classList.toggle("faceup");
-                //MemoryGame.switchTile();
+                
+                // var e = event.target;
+                // console.log(e);
+                
+                // if(e.nodeName === "DIV"){
+                //     console.log("Du har klickat på div");
+                //     console.log(e.parentNode);
+                //     e.parentNode.querySelector(".faceup").classList.toggle("faceup");
+                //     e.parentNode.firstChild.classList.toggle("facedown");
+                // }
+                // else if(e.nodeName === "IMG"){
+                //     console.log("Du har klickat på img");
+                //     e.parentNode.firstChild.setAttribute("class", "facedown");
+                // }
+                MemoryGame.switchTile();
                 return false;
             };
-            divBack.setAttribute("class", "facedown")
             divFront.setAttribute("class", "faceup");
             
         }
@@ -78,9 +90,20 @@ var MemoryGame = {
     
     switchTile: function(){
         
-        //var x = document.;
-        console.log(x);
-        
+        var e = event.target;
+        console.log(e);
+                
+        if(e.nodeName === "DIV"){
+            console.log("Du har klickat på div");
+            console.log(e.parentNode);
+            e.parentNode.querySelector(".faceup").classList.toggle("faceup");
+            e.parentNode.firstChild.classList.toggle("facedown");
+        }
+        else if(e.nodeName === "IMG"){
+            console.log("Du har klickat på img");
+            e.parentNode.parentNode.firstChild.nextSibling.classList.toggle("faceup");
+            e.parentNode.parentNode.firstChild.classList.toggle("facedown");
+        }
     }
     
 };
