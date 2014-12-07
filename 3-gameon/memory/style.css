@@ -1,12 +1,10 @@
 table, tr{
     width:200px;
     height:20px;
-    border:solid 1px;
 }
 td{
     background-image:url("pics/0.png");
     background-repeat:no-repeat;
-    border:solid 1px;
     width:26px;
     height:26px;
 }
