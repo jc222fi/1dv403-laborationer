@@ -11,6 +11,8 @@ var MemoryGame = {
     
     createGameBoard: function(rows, cols){
         
+        var clicks = 0;
+        var clickedTiles = [];
         var gameBoard = document.getElementById("memorygame");
         var rowCount = "";
         var cellCount = "";
@@ -64,48 +66,46 @@ var MemoryGame = {
             //divFront.setAttribute("class", "faceup");
             //divBack.setAttribute("class", "facedown");
             
-            a.onclick = function(){
+            a.onclick = function(e){
+        
+                var numberOfGuesses = 0;
+                e = event.target;
+                console.log(e);
                 
-                // var e = event.target;
-                // console.log(e);
-                
-                // if(e.nodeName === "DIV"){
-                //     console.log("Du har klickat på div");
-                //     console.log(e.parentNode);
-                //     e.parentNode.querySelector(".faceup").classList.toggle("faceup");
-                //     e.parentNode.firstChild.classList.toggle("facedown");
-                // }
-                // else if(e.nodeName === "IMG"){
-                //     console.log("Du har klickat på img");
-                //     e.parentNode.firstChild.setAttribute("class", "facedown");
-                // }
-                MemoryGame.switchTile();
+                if(e.nodeName === "DIV"){
+                    console.log("Du har klickat på div");
+                    e.parentNode.querySelector(".faceup").classList.toggle("faceup");
+                    e.parentNode.firstChild.classList.toggle("facedown");
+                    clickedTiles.push(e);
+                    console.log(clickedTiles.length);
+                    console.log(clickedTiles);
+                    clicks++;
+                    if(clicks === 2 && clickedTiles[0].nextSibling.firstChild.getAttribute("src") === clickedTiles[1].nextSibling.firstChild.getAttribute("src")){
+                        console.log("Grattis du har hittat ett par");
+                        clickedTiles.length = 0;
+                        clicks = 0;
+                    }
+                    else if(clicks === 2 && clickedTiles[0].nextSibling.firstChild.getAttribute("src") != clickedTiles[1].nextSibling.firstChild.getAttribute("src")){
+                        console.log("Inget par");
+                        
+                        setTimeout(function() {
+                            clickedTiles[0].parentNode.querySelector(".facedown").classList.toggle("facedown");
+                            clickedTiles[1].parentNode.querySelector(".facedown").classList.toggle("facedown");
+                            clickedTiles[0].parentNode.firstChild.nextSibling.classList.toggle("faceup");
+                            clickedTiles[1].parentNode.firstChild.nextSibling.classList.toggle("faceup");
+                            clicks = 0;
+                            clickedTiles.length = 0;
+                        }, 1000);
+                    }
+                }
+                else if(e.nodeName === "IMG"){
+                    console.log("Du har redan klickat på den här");
+                }
                 return false;
             };
             divFront.setAttribute("class", "faceup");
-            
-        }
-        
+        }  
     },
-    
-    switchTile: function(){
-        
-        var e = event.target;
-        console.log(e);
-                
-        if(e.nodeName === "DIV"){
-            console.log("Du har klickat på div");
-            console.log(e.parentNode);
-            e.parentNode.querySelector(".faceup").classList.toggle("faceup");
-            e.parentNode.firstChild.classList.toggle("facedown");
-        }
-        else if(e.nodeName === "IMG"){
-            console.log("Du har klickat på img");
-            e.parentNode.parentNode.firstChild.nextSibling.classList.toggle("faceup");
-            e.parentNode.parentNode.firstChild.classList.toggle("facedown");
-        }
-    }
-    
 };
 
 window.onload = MemoryGame.init;
