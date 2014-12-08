@@ -1,14 +1,13 @@
 table, tr{
     width:200px;
-    height:20px;
+    height:26px;
 }
 td{
-    background-image:url("pics/0.png");
-    background-repeat:no-repeat;
+    
     width:26px;
     height:26px;
 }
-div{
+div, a{
     width:26px;
     height:26px;
 }

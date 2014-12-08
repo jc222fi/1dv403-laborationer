@@ -17,20 +17,21 @@ var MemoryGame = {
         var p = "";
         var tds = "";
         var td = "";
-        var divBack = "";
-        var divFront ="";
         var a = "";
         var imgFront = "";
+        var imgBack = "";
         var i = 0;
         var numberOfGuesses = 0;
+        var matches = 0;
         MemoryGame.memoryBoard = new RandomGenerator.getPictureArray(rows, cols); //Genererar ett antal rader i ett antal kolumner
         var arrayOfTiles = MemoryGame.memoryBoard;
         console.log(arrayOfTiles);
+        
         body = document.querySelector("BODY");
         p = document.createElement("P");
         body.appendChild(p);
-        p.innerHTML = "Antal gissningar: "+numberOfGuesses;
         
+        //Skapa brädet
         MemoryGame.createBoard(rows, cols);
         
         //Plockar ut alla td element och skjuter in en bild
@@ -38,39 +39,40 @@ var MemoryGame = {
         for(i=0; i<tds.length; i++){
             td = tds[i];
             
-            divBack = document.createElement("DIV");
-            divFront = document.createElement("DIV");
             a = document.createElement("A");
             a.href = "#";
             imgFront = document.createElement("IMG");
+            imgBack = document.createElement("IMG");
+            imgBack.src = "pics/0.png";
             imgFront.src = "pics/"+arrayOfTiles[i]+".png";
-            divFront.appendChild(imgFront);
-            a.appendChild(divBack);
-            a.appendChild(divFront);
+            a.appendChild(imgBack);
+            a.appendChild(imgFront);
             td.appendChild(a);
             
             a.onclick = function(event){
-                //p.innerHTML = "Antal gissningar: "+numberOfGuesses;
-                //console.log("antal gissningar"+numberOfGuesses);
-                //var e = event.target;
-                //console.log(e);
                 
-                if(event.target.nodeName === "DIV" && clicks<2){
-                    console.log("Du har klickat på div");
+                //Om du klickar på en ej uppvänd bricka
+                if(event.target.getAttribute("SRC") ==="pics/0.png" && clicks<2){
+                    console.log(event.target.nextSibling);
                     event.target.parentNode.querySelector(".faceup").classList.toggle("faceup");
-                    event.target.parentNode.firstChild.classList.toggle("facedown");
+                    event.target.classList.toggle("facedown");
                     clickedTiles.push(event.target);
-                    console.log(clickedTiles.length);
-                    console.log(clickedTiles);
-                    
                     clicks++;
-                    if(clicks === 2 && clickedTiles[0].nextSibling.firstChild.getAttribute("src") === clickedTiles[1].nextSibling.firstChild.getAttribute("src")){
+                    
+                    //Kolla så att det inte är en tredje bricka som vänds upp, och om de matchar
+                    if(clicks === 2 && clickedTiles[0].nextSibling.getAttribute("src") === clickedTiles[1].nextSibling.getAttribute("src")){
                         console.log("Grattis du har hittat ett par");
                         clickedTiles.length = 0;
                         clicks = 0;
                         numberOfGuesses++;
+                        matches++;
+                        //Har du hittat alla par har du vunnit
+                        if(matches === (rows*cols)/2){
+                            p.innerHTML = "GRATTIS! Du klarade det på "+numberOfGuesses+" gissningar";
+                        }
                     }
-                    else if(clicks === 2 && clickedTiles[0].nextSibling.firstChild.getAttribute("src") != clickedTiles[1].nextSibling.firstChild.getAttribute("src")){
+                    //Om inget par, vänd tillbaka med en halv sekunds fördröjning
+                    else if(clicks === 2 && clickedTiles[0].nextSibling.getAttribute("src") != clickedTiles[1].nextSibling.getAttribute("src")){
                         console.log("Inget par");
                         numberOfGuesses++;
                         
@@ -83,15 +85,14 @@ var MemoryGame = {
                             clickedTiles.length = 0;
                         }, 500);
                     }
-                    p.innerHTML = "Antal gissningar: "+numberOfGuesses;
                 }
+                //Om du försöker vända en tredje bricka eller en som redan är uppvänd
                 else{
-                    console.log("Du har redan klickat på den här");
+                    console.log("Du kan inte klicka på den här");
                 }
-                //p.innerHTML = "Antal gissningar: "+numberOfGuesses;
                 return false;
             };
-            divFront.setAttribute("class", "faceup");
+            imgFront.setAttribute("class", "faceup");
         }  
     },
     
