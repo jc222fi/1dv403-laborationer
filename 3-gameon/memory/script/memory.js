@@ -49,14 +49,22 @@ var MemoryGame = {
             a.appendChild(imgFront);
             td.appendChild(a);
             
-            a.onclick = function(event){
+            var myEvent = function(){
+                var clickedTag = "";
+                
+                if(event.target.nodeName === "A"){
+                    clickedTag = event.target.firstChild;
+                }
+                else{
+                    clickedTag = event.target;
+                }
                 
                 //Om du klickar på en ej uppvänd bricka
-                if(event.target.getAttribute("SRC") ==="pics/0.png" && clicks<2){
-                    console.log(event.target.nextSibling);
-                    event.target.parentNode.querySelector(".faceup").classList.toggle("faceup");
-                    event.target.classList.toggle("facedown");
-                    clickedTiles.push(event.target);
+                if(clickedTag.getAttribute("SRC") ==="pics/0.png" && clicks<2){
+                    clickedTag.parentNode.querySelector(".faceup").classList.toggle("faceup");
+                    clickedTag.classList.toggle("facedown");
+                    clickedTiles.push(clickedTag);
+                    console.log(clickedTiles);
                     clicks++;
                     
                     //Kolla så att det inte är en tredje bricka som vänds upp, och om de matchar
@@ -92,6 +100,8 @@ var MemoryGame = {
                 }
                 return false;
             };
+            a.addEventListener("click", myEvent);
+            a.addEventListener("onkeydown", myEvent);
             imgFront.setAttribute("class", "faceup");
         }  
     },
