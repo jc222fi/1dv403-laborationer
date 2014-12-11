@@ -101,7 +101,6 @@ var MemoryGame = {
                 return false;
             };
             a.addEventListener("click", myEvent);
-            a.addEventListener("onkeydown", myEvent);
             imgFront.setAttribute("class", "faceup");
         }  
     },
