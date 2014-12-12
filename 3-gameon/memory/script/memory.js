@@ -96,8 +96,10 @@ var MemoryGame = {
                 }
                 //Om du försöker vända en tredje bricka eller en som redan är uppvänd
                 else{
+                    
                     console.log("Du kan inte klicka på den här");
                 }
+                console.log(clickedTag);
                 return false;
             };
             a.addEventListener("click", myEvent);
