@@ -16,7 +16,6 @@ var MessageBoard = {
         var mess = new Message(textArea.value, new Date());
         
         allMessages += MessageBoard.messages.push(mess);
-        console.log(allMessages);
         MessageBoard.renderMessages();
     },
     
@@ -24,22 +23,31 @@ var MessageBoard = {
         var messageDiv = document.getElementById("messages");
         var div = document.createElement("div");
         var text = document.createElement("p");
+        var time = document.createElement("p");
+        
+        time.innerHTML = MessageBoard.messages[messageID].getDateText();
         text.innerHTML = MessageBoard.messages[messageID].getHTMLText();
         div.appendChild(text);
-        console.log(messageDiv);
+        div.appendChild(time);
         messageDiv.appendChild(div);
         
     },
     
     renderMessages: function(){
         document.getElementById("messages").innerHTML = "";
+        var counter = document.createElement("p");
+        counter.innerHTML = "";
+        
         var i;
         for(i = 0; i<MessageBoard.messages.length; i++){
             MessageBoard.renderMessage(i);
         }
-    }
+        
+        document.getElementById("messages").appendChild(counter);
+        counter.innerHTML = MessageBoard.messages.length;
+    },
+    
     
 };
-
 
 window.onload = MessageBoard.init;
