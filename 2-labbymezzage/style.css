@@ -23,6 +23,19 @@ body, .container{
 }
 .content{
     background-color:#fae6a5;
+    padding:7px;
+    font-family:"Trebuchet MS", Helvetica, sans-serif;
+}
+.message{
+    background-color:#CCFFCC;
+    border:1px solid #009966;
+    padding:5px;
+    margin-bottom:7px;
+}
+.small{
+    text-align:right;
+    font-size:x-small;
+    font-style:italic;
 }
 .header{
     color:#55ab79;

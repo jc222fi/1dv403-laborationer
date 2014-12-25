@@ -29,6 +29,8 @@ var MessageBoard = {
         text.innerHTML = MessageBoard.messages[messageID].getHTMLText();
         div.appendChild(text);
         div.appendChild(time);
+        div.setAttribute("class", "message");
+        time.setAttribute("class", "small");
         messageDiv.appendChild(div);
         
     },
@@ -44,7 +46,8 @@ var MessageBoard = {
         }
         
         document.getElementById("messages").appendChild(counter);
-        counter.innerHTML = MessageBoard.messages.length;
+        counter.setAttribute("class", "small");
+        counter.innerHTML = "Antal meddelanden: "+MessageBoard.messages.length;
     },
     
     
