@@ -23,23 +23,34 @@ var MessageBoard = {
         var messageDiv = document.getElementById("messages");
         var div = document.createElement("div");
         var imgClose = document.createElement("img");
+        var imgTime = document.createElement("img");
         var text = document.createElement("p");
         var time = document.createElement("p");
+        var date = MessageBoard.messages[messageID].getDate();
+        var monthArray = ["januari", "februari", "mars", "april", "maj", "juni", "juli", "augusti", "september", "oktober", "november", "december"];
         
         time.innerHTML = MessageBoard.messages[messageID].getDateText();
         text.innerHTML = MessageBoard.messages[messageID].getHTMLText();
+        
         div.appendChild(imgClose);
+        div.appendChild(imgTime);
         div.appendChild(text);
         div.appendChild(time);
         
         imgClose.setAttribute("src", "pics/cancel.png");
         imgClose.alt="Close";
+        imgTime.setAttribute("src", "pics/clock.png");
+        imgTime.alt="Time";
         div.setAttribute("class", "message");
         time.setAttribute("class", "small");
         messageDiv.appendChild(div);
         
         imgClose.onclick = function(){
             MessageBoard.removeMessage(messageID);
+        }
+        
+        imgTime.onclick = function(){
+            alert("Det här inlägget skapades den "+date.getDate()+" "+monthArray[date.getMonth()]+" "+date.getFullYear()+" "+date.toLocaleTimeString());
         }
         
     },
@@ -60,10 +71,9 @@ var MessageBoard = {
     },
     
     removeMessage: function(messageID){
-        MessageBoard.messages.splice(messageID,1);
+        MessageBoard.messages.splice(messageID, 1);
         MessageBoard.renderMessages();
     }
-    
     
 };
 

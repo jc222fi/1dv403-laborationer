@@ -33,6 +33,7 @@ body, .container{
     margin-bottom:7px;
 }
 img{
+    margin-left:4px;
     float:right;
     height:15px;
     width:15px;
