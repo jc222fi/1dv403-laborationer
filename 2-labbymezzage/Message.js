@@ -22,4 +22,11 @@ Message.prototype.getHTMLText = function(){
 };
 Message.prototype.getDateText = function(){
     return this.getDate().toLocaleTimeString();
+};
+Message.prototype.getFormattedDateStamp = function(){
+    var date = this.getDate();
+    var monthArray = ["januari", "februari", "mars", "april", "maj", "juni", "juli", "augusti", "september", "oktober", "november", "december"];
+    var dateAsString = date.getDate()+" "+monthArray[date.getMonth()]+" "+date.getFullYear()+" "+date.toLocaleTimeString();
+    
+    return dateAsString;
 }

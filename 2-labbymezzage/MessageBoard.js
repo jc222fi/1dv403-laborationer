@@ -26,8 +26,8 @@ var MessageBoard = {
         var imgTime = document.createElement("img");
         var text = document.createElement("p");
         var time = document.createElement("p");
-        var date = MessageBoard.messages[messageID].getDate();
-        var monthArray = ["januari", "februari", "mars", "april", "maj", "juni", "juli", "augusti", "september", "oktober", "november", "december"];
+        //var date = MessageBoard.messages[messageID].getDate();
+        //var monthArray = ["januari", "februari", "mars", "april", "maj", "juni", "juli", "augusti", "september", "oktober", "november", "december"];
         
         time.innerHTML = MessageBoard.messages[messageID].getDateText();
         text.innerHTML = MessageBoard.messages[messageID].getHTMLText();
@@ -50,7 +50,7 @@ var MessageBoard = {
         }
         
         imgTime.onclick = function(){
-            alert("Det här inlägget skapades den "+date.getDate()+" "+monthArray[date.getMonth()]+" "+date.getFullYear()+" "+date.toLocaleTimeString());
+            alert("Det här inlägget skapades den "+MessageBoard.messages[messageID].getFormattedDateStamp());
         }
         
     },
