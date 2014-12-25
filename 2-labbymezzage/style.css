@@ -32,6 +32,11 @@ body, .container{
     padding:5px;
     margin-bottom:7px;
 }
+img{
+    float:right;
+    height:15px;
+    width:15px;
+}
 .small{
     text-align:right;
     font-size:x-small;

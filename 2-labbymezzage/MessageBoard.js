@@ -22,16 +22,25 @@ var MessageBoard = {
     renderMessage: function(messageID){
         var messageDiv = document.getElementById("messages");
         var div = document.createElement("div");
+        var imgClose = document.createElement("img");
         var text = document.createElement("p");
         var time = document.createElement("p");
         
         time.innerHTML = MessageBoard.messages[messageID].getDateText();
         text.innerHTML = MessageBoard.messages[messageID].getHTMLText();
+        div.appendChild(imgClose);
         div.appendChild(text);
         div.appendChild(time);
+        
+        imgClose.setAttribute("src", "pics/cancel.png");
+        imgClose.alt="Close";
         div.setAttribute("class", "message");
         time.setAttribute("class", "small");
         messageDiv.appendChild(div);
+        
+        imgClose.onclick = function(){
+            MessageBoard.removeMessage(messageID);
+        }
         
     },
     
@@ -49,6 +58,11 @@ var MessageBoard = {
         counter.setAttribute("class", "small");
         counter.innerHTML = "Antal meddelanden: "+MessageBoard.messages.length;
     },
+    
+    removeMessage: function(messageID){
+        MessageBoard.messages.splice(messageID,1);
+        MessageBoard.renderMessages();
+    }
     
     
 };
