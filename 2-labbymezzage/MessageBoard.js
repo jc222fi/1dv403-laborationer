@@ -5,9 +5,20 @@ var MessageBoard = {
     messages: [],
     init: function(){
         
+        var textArea = document.getElementById("textruta");
         var send = document.getElementById("skickaknapp");
         
         send.onclick = MessageBoard.addMessage;
+        
+        textArea.onkeypress = function(e){
+            if(!e){
+                e = window.event;
+            }
+            if(e.keyCode === 13){
+                MessageBoard.addMessage();
+                return false;
+            }
+        };
     },
     
     addMessage: function(){
@@ -26,8 +37,6 @@ var MessageBoard = {
         var imgTime = document.createElement("img");
         var text = document.createElement("p");
         var time = document.createElement("p");
-        //var date = MessageBoard.messages[messageID].getDate();
-        //var monthArray = ["januari", "februari", "mars", "april", "maj", "juni", "juli", "augusti", "september", "oktober", "november", "december"];
         
         time.innerHTML = MessageBoard.messages[messageID].getDateText();
         text.innerHTML = MessageBoard.messages[messageID].getHTMLText();
@@ -47,11 +56,11 @@ var MessageBoard = {
         
         imgClose.onclick = function(){
             MessageBoard.removeMessage(messageID);
-        }
+        };
         
         imgTime.onclick = function(){
             alert("Det här inlägget skapades den "+MessageBoard.messages[messageID].getFormattedDateStamp());
-        }
+        };
         
     },
     
