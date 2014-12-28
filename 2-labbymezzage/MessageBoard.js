@@ -14,7 +14,7 @@ var MessageBoard = {
             if(!e){
                 e = window.event;
             }
-            if(e.keyCode === 13){
+            if(e.keyCode === 13 && e.shiftKey === false){
                 MessageBoard.addMessage();
                 return false;
             }
@@ -80,8 +80,12 @@ var MessageBoard = {
     },
     
     removeMessage: function(messageID){
-        MessageBoard.messages.splice(messageID, 1);
-        MessageBoard.renderMessages();
+        var result = window.confirm("Är du säker på att du vill ta bort meddelandet?");
+        
+        if (result){
+            MessageBoard.messages.splice(messageID, 1);
+            MessageBoard.renderMessages();
+        }
     }
     
 };
