@@ -53,7 +53,12 @@ var MemoryGame = {
                 var clickedTag = "";
                 
                 if(event.target.nodeName === "A"){
-                    clickedTag = event.target.firstChild;
+                    if(event.target.querySelector(".faceup")){
+                        clickedTag = event.target.firstChild;
+                    }
+                    else{
+                        clickedTag = event.target.firstChild.nextSibling;
+                    }
                 }
                 else{
                     clickedTag = event.target;
