@@ -3,6 +3,7 @@
 var MyForm = {
     
     init: function(){
+        MyForm.createForm();
         MyForm.getData();
         MyForm.sendData();
     },
@@ -14,24 +15,38 @@ var MyForm = {
         
     },
     
+    createForm: function(){
+        var div = document.getElementById("container");
+        var input = document.createElement("input");
+        input.setAttribute("id", "answer");
+        var button = document.createElement("button");
+        button.setAttribute("id", "submit")
+        button.innerHTML = "Skicka";
+        var pQuestion = document.createElement("p");
+        pQuestion.setAttribute("id", "question");
+        
+        div.appendChild(pQuestion);
+        div.appendChild(input);
+        div.appendChild(button);
+        
+    },
+    
     getData: function(){
         var xhr = new XMLHttpRequest();
-        var currentQuestion = "";
+        var pQuestion = document.getElementById("question");
+        
             
         xhr.onreadystatechange = function(){
           
             if(xhr.readyState === 4){
                 if(xhr.status === 200||xhr.status === 304){
                     var data = JSON.parse(xhr.responseText);
-                    currentQuestion = data.question;
+                    pQuestion.innerHTML = data.question;
                     console.log(data);
-                    var pTag = document.createElement("P");
-                    pTag.innerHTML = currentQuestion;
-                    var div = document.getElementById("message");
-                    div.appendChild(pTag);
+                    
                 }
                 else{
-                    console.log("FEL");
+                    console.log("FEL GET");
                 }
             }
         };
@@ -42,29 +57,34 @@ var MyForm = {
     
     sendData: function(){
         var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function(){
-          
-            if(xhr.readyState === 4){
-                if(xhr.status === 200||xhr.status === 304){
-                
-                    var data = JSON.parse(xhr.responseText);
-                    console.log(data);
-                    var pTag = document.createElement("P");
-                    pTag.innerHTML = "";
-                    var div = document.getElementById("message");
-                    div.appendChild(pTag);
+        var answer = document.getElementById("answer");
+        var submit = document.getElementById("submit");
+        
+        submit.onclick = function(){
+            xhr.onreadystatechange = function(){
+              
+                if(xhr.readyState === 4){
+                    if(xhr.status === 200||xhr.status === 304){
+                    
+                        var data = JSON.parse(xhr.responseText);
+                        console.log(data);
+                        var pTag = document.createElement("P");
+                        pTag.innerHTML = "";
+                        var div = document.createElement("DIV");
+                        div.appendChild(pTag);
+                    }
+                    else{
+                        console.log("FEL POST");
+                    }
                 }
-                else{
-                    console.log("FEL");
-                }
-            }
-        };
-        xhr.open("POST", "http://vhost3.lnu.se:20080/answer/1", true);
-        xhr.setRequestHeader("Content-Type", "application/json");
-        var answer = {
-            answer:2
-        }; 
-        xhr.send(JSON.stringify(answer));
+            };
+            xhr.open("POST", "http://vhost3.lnu.se:20080/answer/1", true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            var returnData = {
+                "answer": answer.value
+            }; 
+            xhr.send(JSON.stringify(returnData));
+        }
     }
 };
 window.onload = MyForm.init;
