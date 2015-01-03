@@ -3,6 +3,7 @@
 var MyForm = {
     
     nextURL: "http://vhost3.lnu.se:20080/question/1",
+    counter: 0,
     init: function(){
         
         MyForm.createForm();
@@ -50,8 +51,6 @@ var MyForm = {
         
         xhr.open("GET", MyForm.nextURL, true);
         xhr.send(null);
-        //MyForm.nextURL = data.nextURL;
-        //console.log(MyForm.nextURL);
     },
     
     sendData: function(){
@@ -64,16 +63,19 @@ var MyForm = {
             xhr.onreadystatechange = function(){
               
                 if(xhr.readyState === 4){
+                    data = JSON.parse(xhr.responseText);
                     if(xhr.status === 200||xhr.status === 304){
                     
-                        data = JSON.parse(xhr.responseText);
-                        console.log(data);
+                        console.log(data.message);
                         MyForm.nextURL = data.nextURL;
                         MyForm.getData();
-                        
                     }
                     else{
-                        console.log("FEL POST");
+                        var question = document.getElementById("question");
+                        question.innerHTML = data.message;
+                        setTimeout(function(){
+                            question.innerHTML = data.question;
+                        }, 1000);
                     }
                 }
             };
