@@ -3,7 +3,7 @@
 var MyForm = {
     
     nextURL: "http://vhost3.lnu.se:20080/question/1",
-    counter: 0,
+    counterArray: [],
     question: "",
     init: function(){
         
@@ -46,7 +46,17 @@ var MyForm = {
                     
                 }
                 else{
-                    console.log("FEL GET");
+                    if(MyForm.nextURL === undefined){
+                        console.log("Spelet slut");
+                        for(var i=0; i<MyForm.counterArray.length;i++){
+                            var pResult = document.createElement("p");
+                            document.getElementById("container").appendChild(pResult);
+                            pResult.innerHTML = "På fråga "+(i+1)+" krävdes "+MyForm.counterArray[i]+" försök.";
+                        }
+                    }
+                    else{
+                        console.log("FEL GET");
+                    }
                 }
             }
         };
@@ -60,17 +70,19 @@ var MyForm = {
         var answer = document.getElementById("answer");
         var submit = document.getElementById("submit");
         var data = "";
+        var counter = 0;
         
         submit.onclick = function(){
             xhr.onreadystatechange = function(){
               
                 if(xhr.readyState === 4){
-                    MyForm.counter +=1;
-                    console.log(MyForm.counter);
+                    counter +=1;
+                    console.log(counter);
                     data = JSON.parse(xhr.responseText);
                     if(xhr.status === 200||xhr.status === 304){
-                        
+                        MyForm.counterArray.push(counter);
                         console.log(data.message);
+                        console.log(MyForm.counterArray);
                         MyForm.nextURL = data.nextURL;
                         MyForm.getData();
                     }
