@@ -1,0 +1,9 @@
+html{
+    background-color:black;
+}
+    #container{
+    height:715px;
+    width:1080px;
+    background-image:url("pics/notepad1.jpg");
+    background-repeat:no-repeat;
+}
