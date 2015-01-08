@@ -46,6 +46,7 @@ var MessageBoard = {
         div.appendChild(text);
         div.appendChild(time);
         
+        //bilder från pixabay.com
         imgClose.setAttribute("src", "pics/cancel.png");
         imgClose.alt="Close";
         imgTime.setAttribute("src", "pics/clock.png");
