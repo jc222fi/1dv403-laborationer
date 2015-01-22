@@ -26,8 +26,10 @@ var MessageBoard = {
         var allMessages = MessageBoard.messages;
         var mess = new Message(textArea.value, new Date());
         
-        allMessages += MessageBoard.messages.push(mess);
-        MessageBoard.renderMessages();
+        if(textArea.value !== ""){
+            allMessages += MessageBoard.messages.push(mess);
+            MessageBoard.renderMessages();
+        }
     },
     
     renderMessage: function(messageID){

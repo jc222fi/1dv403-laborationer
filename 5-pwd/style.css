@@ -1,9 +1,18 @@
 html{
     background-color:black;
 }
-    #container{
+#container{
     height:715px;
     width:1080px;
+    margin:0 auto;
     background-image:url("pics/notepad1.jpg");
     background-repeat:no-repeat;
+}
+footer{
+    background-color:#ff8b42;
+    position:absolute;
+    margin-top:681px;
+    height:30px;
+    width:1076px;
+    padding:2px;
 }

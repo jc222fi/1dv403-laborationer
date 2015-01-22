@@ -8,12 +8,18 @@ window.onload = function(){
 		date = new Date(date);
 		var dateNow = new Date();
 		var birthday = new Date(dateNow.getFullYear(),date.getMonth(),date.getDate());
-		var nextBirthday = new Date((birthday.getFullYear()+1),birthday.getMonth(),birthday.getDate());
+		var nextBirthday = new Date(birthday.getFullYear(),birthday.getMonth(),birthday.getDate());
 		var oneDay = 1000*60*60*24;
 		var answer = "";
 		
 		if(date.toDateString().length != 15){
 			throw new Error("Fel format på datum");
+		}
+		if((birthday.getMonth()< dateNow.getMonth())||
+		((birthday.getMonth()===dateNow.getMonth())&&
+		(birthday.getDate()<dateNow.getDate()))){
+			nextBirthday.setFullYear(nextBirthday.getFullYear()+1);
+			console.log(nextBirthday);
 		}
 		if(birthday.getFullYear()===dateNow.getFullYear() && birthday.getMonth()===dateNow.getMonth() && birthday.getDate()===dateNow.getDate()){
 			answer = 0;
@@ -23,7 +29,7 @@ window.onload = function(){
 			answer = 1;
 			return answer;
 		}
-		else if(birthday != dateNow && birthday.getDate() > (dateNow.getDate()+1)){
+		else{
 		
 			answer = Math.ceil((nextBirthday.getTime()-dateNow.getTime())/oneDay);
 			return answer;
