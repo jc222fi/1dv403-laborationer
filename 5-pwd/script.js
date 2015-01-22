@@ -111,11 +111,21 @@ var MyDesktop = {
         var imgTag = "";
         var aTag = "";
         var imgURL = "";
+        var maxWidth = 0;
+        var maxHeight = 0;
         var i = 0;
         var windowBody = document.querySelector(".windowBody");
         
+        //console.log(MyDesktop.imgArray.thumbWidth);
+        
         for(i=0;i<MyDesktop.imgArray.length;i++){
-            console.log(MyDesktop.imgArray[i]);
+            
+            if(MyDesktop.imgArray[i].thumbWidth>maxWidth){
+                maxWidth = MyDesktop.imgArray[i].thumbWidth;
+            }
+            if(MyDesktop.imgArray[i].thumbHeight>maxHeight){
+                maxHeight = MyDesktop.imgArray[i].thumbHeight;
+            }
             
             imgDiv = document.createElement("div");
             aTag = document.createElement("a");
@@ -123,13 +133,15 @@ var MyDesktop = {
             
             aTag.href = "#";
             imgTag.src = MyDesktop.imgArray[i].thumbURL;
-            imgTag.setAttribute("id", "thumbImg");
+            imgDiv.setAttribute("id", "thumbImg");
             
             aTag.appendChild(imgTag);
             imgDiv.appendChild(aTag);
             windowBody.appendChild(imgDiv);
             imgURL = MyDesktop.imgArray[i].URL;
-            console.log(imgURL);
+            //console.log(imgURL);
+            imgDiv.style.width = maxWidth+"px";
+            imgDiv.style.height = maxHeight+"px";
             
             MyDesktop.changeBackground(imgURL, aTag);
         }
@@ -143,7 +155,7 @@ var MyDesktop = {
                 //console.log(container);
                 document.getElementById("container").style.background = "url('"+imgURL+"') repeat";
                 //container.style.background = "url('"+MyDesktop.imgArray[i].URL+"')";
-            };
+        };
     }
     
 };

@@ -51,7 +51,9 @@ body{
 }
     #thumbImg{
         float:left;
-        margin:2px auto;
+        margin: 2px;
+        padding:5px;
+        background-color:#bd8e5e;
     }
 .windowFooter{
     height:20px;
