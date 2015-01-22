@@ -117,15 +117,16 @@ var MyDesktop = {
         var windowBody = document.querySelector(".windowBody");
         
         //console.log(MyDesktop.imgArray.thumbWidth);
-        
         for(i=0;i<MyDesktop.imgArray.length;i++){
-            
             if(MyDesktop.imgArray[i].thumbWidth>maxWidth){
                 maxWidth = MyDesktop.imgArray[i].thumbWidth;
             }
             if(MyDesktop.imgArray[i].thumbHeight>maxHeight){
                 maxHeight = MyDesktop.imgArray[i].thumbHeight;
             }
+        }
+        for(i=0;i<MyDesktop.imgArray.length;i++){
+            
             
             imgDiv = document.createElement("div");
             aTag = document.createElement("a");

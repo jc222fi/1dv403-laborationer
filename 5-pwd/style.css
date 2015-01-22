@@ -12,7 +12,7 @@ body{
     color:white;
     font-family:Arial, Helvetica, sans-serif;
     height:400px;
-    width:300px;
+    width:350px;
     margin-left:5px;
     border-top:1px solid #ffb870;
     border-left:1px solid #ffb870;
@@ -22,7 +22,7 @@ body{
 }
 .windowHeader{
     height:30px;
-    width:290px;
+    width:340px;
     padding:5px;
     background-color:#ff8b42;
 }
@@ -46,18 +46,18 @@ body{
     }
 .windowBody{
     height:340px;
-    width:300px;
+    width:350px;
     overflow-y:scroll;
 }
     #thumbImg{
         float:left;
-        margin: 2px;
+        margin: 5px;
         padding:5px;
-        background-color:#bd8e5e;
+        background-color:#c4af99;
     }
 .windowFooter{
     height:20px;
-    width:300px;
+    width:350px;
     background-color:#ff8b42;
 }
     .windowFooter p{
