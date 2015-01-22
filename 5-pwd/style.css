@@ -10,7 +10,37 @@ html{
 .imageViewer{
     height:400px;
     width:300px;
-    background-color:green;
+    margin-left:5px;
+    border-top:1px solid #ffb870;
+    border-left:1px solid #ffb870;
+    border-right:1px solid #ff8b42;
+    border-bottom:1px solid #ff8b42;
+    background-color:#ffffcc;
+}
+.windowHeader{
+    height:30px;
+    width:290px;
+    padding:5px;
+    background-color:#ff8b42;
+}
+    .windowHeader img{
+        float:left;
+    }
+    .windowHeader p{
+        color:white;
+        font-family:Arial, Helvetica, sans-serif;
+        margin-top: 2px;
+        margin-left: 34px;
+    }
+.windowBody{
+    height:340px;
+    width:300px;
+    overflow-y:scroll;
+}
+.windowFooter{
+    height:20px;
+    width:300px;
+    background-color:#ff8b42;
 }
 footer{
     background-color:#ff8b42;

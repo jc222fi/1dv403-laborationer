@@ -25,13 +25,28 @@ var MyDesktop = {
         
         var containerDiv = document.getElementById("container");
         var windowDiv = document.createElement("div");
-        var windowHeader = document.createElement("p");
+        var windowHeader = document.createElement("div");
+        var windowBody = document.createElement("div");
+        var windowFooter = document.createElement("div");
+        var windowHeadline = document.createElement("p");
+        //var statusLine = document.createElement("p");
+        var headerIcon = document.createElement("img");
         
+        headerIcon.src = "pics/desktopicon.png";
         windowDiv.setAttribute("class", "imageViewer");
+        windowBody.setAttribute("class", "windowBody");
+        windowHeader.setAttribute("class", "windowHeader");
+        windowFooter.setAttribute("class", "windowFooter");
+        
+        windowHeader.appendChild(headerIcon);
+        windowHeader.appendChild(windowHeadline);
+        //windowFooter.appendChild(statusLine);
         windowDiv.appendChild(windowHeader);
+        windowDiv.appendChild(windowBody);
+        windowDiv.appendChild(windowFooter);
         containerDiv.appendChild(windowDiv);
         
-        windowHeader.innerHTML = "Image Viewer";
+        windowHeadline.innerHTML = "Image Viewer";
         //console.log(divContainer);
     }
     
