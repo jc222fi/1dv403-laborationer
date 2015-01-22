@@ -57,11 +57,11 @@ var MyDesktop = {
         windowHeader.setAttribute("class", "windowHeader");
         windowFooter.setAttribute("class", "windowFooter");
         
+        statusLine.appendChild(loadingIcon);
         a.appendChild(closeIcon);
         windowHeader.appendChild(headerIcon);
         windowHeader.appendChild(a);
         windowHeader.appendChild(windowHeadline);
-        statusLine.appendChild(loadingIcon);
         windowFooter.appendChild(statusLine);
         windowDiv.appendChild(windowHeader);
         windowDiv.appendChild(windowBody);
@@ -110,6 +110,7 @@ var MyDesktop = {
         var imgDiv = "";
         var imgTag = "";
         var aTag = "";
+        var imgURL = "";
         var i = 0;
         var windowBody = document.querySelector(".windowBody");
         
@@ -120,15 +121,29 @@ var MyDesktop = {
             aTag = document.createElement("a");
             imgTag = document.createElement("img");
             
-            aTag.href = MyDesktop.imgArray[i].URL;
+            aTag.href = "#";
             imgTag.src = MyDesktop.imgArray[i].thumbURL;
             imgTag.setAttribute("id", "thumbImg");
             
             aTag.appendChild(imgTag);
             imgDiv.appendChild(aTag);
             windowBody.appendChild(imgDiv);
+            imgURL = MyDesktop.imgArray[i].URL;
+            console.log(imgURL);
             
+            MyDesktop.changeBackground(imgURL, aTag);
         }
+        
+    },
+    
+    changeBackground: function(imgURL, aTag){
+        
+        aTag.onclick = function(){
+                //var container = document.getElementById("container");
+                //console.log(container);
+                document.getElementById("container").style.background = "url('"+imgURL+"') repeat";
+                //container.style.background = "url('"+MyDesktop.imgArray[i].URL+"')";
+            };
     }
     
 };
