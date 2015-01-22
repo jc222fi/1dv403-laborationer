@@ -6,7 +6,11 @@ html{
     width:1080px;
     margin:0 auto;
     background-image:url("pics/notepad1.jpg");
-    background-repeat:no-repeat;
+}
+.imageViewer{
+    height:400px;
+    width:300px;
+    background-color:green;
 }
 footer{
     background-color:#ff8b42;
