@@ -3,6 +3,7 @@
 
 var MyDesktop = {
     
+    windowCounter:0,
     init: function(){
         
         MyDesktop.openDesktop();
@@ -23,7 +24,9 @@ var MyDesktop = {
         
         button.onclick = function(){
             
-            MyDesktop.openWindow();
+            if(MyDesktop.windowCounter === 0){
+                MyDesktop.openWindow();
+            }
         };
     },
     
@@ -61,12 +64,15 @@ var MyDesktop = {
         containerDiv.appendChild(windowDiv);
         
         windowHeadline.innerHTML = "Image Viewer";
-        statusLine.innerHTML = "Status..."
+        statusLine.innerHTML = "Status...";
+        
+        MyDesktop.windowCounter = 1;
         
         a.onclick = function(){
             containerDiv.innerHTML = "";
+            MyDesktop.windowCounter = 0;
             MyDesktop.openDesktop();
-        }
+        };
     }
     
 };
