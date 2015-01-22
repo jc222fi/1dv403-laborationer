@@ -2,10 +2,11 @@ html{
     background-color:black;
 }
 #container{
-    height:715px;
+    height:710px;
     width:1080px;
     margin:0 auto;
     background-image:url("pics/notepad1.jpg");
+    padding-top:5px;
 }
 .imageViewer{
     color:white;
@@ -48,6 +49,10 @@ html{
     width:300px;
     overflow-y:scroll;
 }
+    #thumbImg{
+        float:left;
+        margin:2px auto;
+    }
 .windowFooter{
     height:20px;
     width:300px;
@@ -66,4 +71,5 @@ footer{
     height:30px;
     width:1076px;
     padding:2px;
+    border-top:1px solid #ffb870;
 }

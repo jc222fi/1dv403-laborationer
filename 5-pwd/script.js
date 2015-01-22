@@ -3,6 +3,7 @@
 
 var MyDesktop = {
     
+    imgArray:[],
     windowCounter:0,
     init: function(){
         
@@ -83,25 +84,47 @@ var MyDesktop = {
     loadingPictures: function(){
         
         var xhr = new XMLHttpRequest();
-        var data = "";
         var statusLine = document.getElementById("status");
         
         xhr.onreadystatechange = function(){
           
             if(xhr.readyState === 4){
-              if(xhr.status === 200){
-                  statusLine.innerHTML = "";
-                  data = JSON.parse(xhr.responseText);
-                  console.log(data);
-              }
-              else{
-                  console.log("Nåt är fel");
-              }
+                if(xhr.status === 200){
+                    statusLine.innerHTML = "";
+                    MyDesktop.imgArray = JSON.parse(xhr.responseText);
+                    console.log(MyDesktop.imgArray);
+                    MyDesktop.displayImages();
+                }
+                else{
+                    console.log("Nåt är fel");
+                }
             }
             
         };
         xhr.open("GET","http://homepage.lnu.se/staff/tstjo/labbyServer/imgviewer/", true);
         xhr.send(null);
+    },
+    
+    displayImages: function(){
+        
+        var imgDiv = "";
+        var imgTag = "";
+        var i = 0;
+        var windowBody = document.querySelector(".windowBody");
+        
+        for(i=0;i<MyDesktop.imgArray.length;i++){
+            console.log(MyDesktop.imgArray[i]);
+            
+            imgDiv = document.createElement("div");
+            imgTag = document.createElement("img");
+            
+            imgTag.src = MyDesktop.imgArray[i].thumbURL;
+            imgTag.setAttribute("id", "thumbImg");
+            
+            imgDiv.appendChild(imgTag);
+            windowBody.appendChild(imgDiv);
+            
+        }
     }
     
 };
