@@ -41,11 +41,14 @@ var MyDesktop = {
         var statusLine = document.createElement("p");
         var headerIcon = document.createElement("img");
         var closeIcon = document.createElement("img");
+        var loadingIcon = document.createElement("img");
         var a = document.createElement("a");
         
         a.href ="#";
         closeIcon.src = "pics/cancel.png";
         headerIcon.src = "pics/desktopicon.png";
+        loadingIcon.src = "pics/ajax-loader.gif";
+        statusLine.setAttribute("id", "status");
         headerIcon.setAttribute("class", "headerIcon");
         a.setAttribute("class", "close");
         windowDiv.setAttribute("class", "imageViewer");
@@ -57,6 +60,7 @@ var MyDesktop = {
         windowHeader.appendChild(headerIcon);
         windowHeader.appendChild(a);
         windowHeader.appendChild(windowHeadline);
+        statusLine.appendChild(loadingIcon);
         windowFooter.appendChild(statusLine);
         windowDiv.appendChild(windowHeader);
         windowDiv.appendChild(windowBody);
@@ -64,7 +68,6 @@ var MyDesktop = {
         containerDiv.appendChild(windowDiv);
         
         windowHeadline.innerHTML = "Image Viewer";
-        statusLine.innerHTML = "Status...";
         
         MyDesktop.windowCounter = 1;
         
@@ -73,6 +76,32 @@ var MyDesktop = {
             MyDesktop.windowCounter = 0;
             MyDesktop.openDesktop();
         };
+        
+        MyDesktop.loadingPictures();
+    },
+    
+    loadingPictures: function(){
+        
+        var xhr = new XMLHttpRequest();
+        var data = "";
+        var statusLine = document.getElementById("status");
+        
+        xhr.onreadystatechange = function(){
+          
+            if(xhr.readyState === 4){
+              if(xhr.status === 200){
+                  statusLine.innerHTML = "";
+                  data = JSON.parse(xhr.responseText);
+                  console.log(data);
+              }
+              else{
+                  console.log("Nåt är fel");
+              }
+            }
+            
+        };
+        xhr.open("GET","http://homepage.lnu.se/staff/tstjo/labbyServer/imgviewer/", true);
+        xhr.send(null);
     }
     
 };
