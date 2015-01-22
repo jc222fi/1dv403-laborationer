@@ -109,6 +109,7 @@ var MyDesktop = {
         
         var imgDiv = "";
         var imgTag = "";
+        var aTag = "";
         var i = 0;
         var windowBody = document.querySelector(".windowBody");
         
@@ -116,12 +117,15 @@ var MyDesktop = {
             console.log(MyDesktop.imgArray[i]);
             
             imgDiv = document.createElement("div");
+            aTag = document.createElement("a");
             imgTag = document.createElement("img");
             
+            aTag.href = MyDesktop.imgArray[i].URL;
             imgTag.src = MyDesktop.imgArray[i].thumbURL;
             imgTag.setAttribute("id", "thumbImg");
             
-            imgDiv.appendChild(imgTag);
+            aTag.appendChild(imgTag);
+            imgDiv.appendChild(aTag);
             windowBody.appendChild(imgDiv);
             
         }
